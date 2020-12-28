@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    db:
+        build: ./db/
+        expose:
+          - 27017
+        ports: 
+          - "27017:27017"
+
+    
+    webapp:
+        build: ./webapp/
+        expose:
+            - 5000
+        ports: 
+            - "5000:5000"    
+                        
+
+    jp:
+        build: ./jptr/
+        expose:
+            - 8888
+        ports: 
+            - "8888:8888"    
+            
+# Command to get the juypter notebooks running:  docker exec <juypter container id> jupyter notebook list
+# Replace the http to localhost to run it
+        
