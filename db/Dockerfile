@@ -15,7 +15,7 @@ RUN apt-get install -y unzip
 # Unzipping the data file
 RUN unzip AggFile_2014_2020Q3.zip
 
-# Adding logpath and other things in CMD as previous CMD of mongodb docker image is removed because of 'FROM' 
+# Adding logpath and other things in CMD to start mongodb 
 # Creating a new database 'test' and collection 'visa' with the seed data 'AggFile_2014_2020Q3.txt' with headerline to tell it has headers
 # Starting the mongodb
 CMD mongod --fork --logpath /var/log/mongodb.log; \
