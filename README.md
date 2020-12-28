@@ -30,7 +30,10 @@ Note: The URI in the following examples is for representational purposes only. T
   + curl -X GET "http://192.168.1.25:5000/salaries?employer=microsoft&title=director"
 
 ## High level service architecture
-The service is completely docker-ized. It utilized two containers for the REST api (frontend) and the database (backend). The RESTful apis are powered by a container running Flask. Flask is connects to mongodb backend running in another container. Mongodb gets seeded with the salary data upon the container start. More details on the data aggregation and mongodb data seeding can be found in the **[doc here](https://github.com/gauravsgr/salary-service/blob/master/db/database_setup.md)**. There is also a docker container running a juypter. This container has an **[embedded notebook](https://github.com/gauravsgr/salary-service/blob/master/jptr/Salary_Service_API_Calls.ipynb)** that has sample API requests made in python and transfored to pandas dataframe.
+The service is completely docker-ized. It utilized two containers for the REST api (frontend) and the database (backend). The RESTful apis are powered by a container running Flask. Flask is connects to mongodb backend running in another container. Mongodb gets seeded with the salary data upon the container start. More details on the data aggregation and mongodb data seeding can be found in the **[doc here](https://github.com/gauravsgr/salary-service/blob/master/db/database_setup.md)**. There is also a docker container running a juypter. This container has an **[embedded notebook](https://github.com/gauravsgr/salary-service/blob/master/jptr/Salary_Service_API_Calls.ipynb)** that has sample API requests made in python and transfored to pandas dataframe. The mongodb with the seeded data can be pulled from dockerhub with the following. 
+```sh
+docker pull gauravsgr/salary-service-db
+```
 
 ## Debugging
 - If you want to look into a particular container and see any warning or error messages. Docker logs is the best resource. 
