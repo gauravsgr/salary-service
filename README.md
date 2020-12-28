@@ -8,7 +8,7 @@ Fork the repo and clone the repo on your local machine with docker and docker-co
 ```sh
 sudo docker-compose up -d 
 ```
-Once the containers are up and running. 
+Once the containers are up and running, you can start making the API calls. 
 
 ## APIs
 The input parameters to all the APIs do partial match and will return everything that partially or completely matches the string. The response is returned in JSON format.
@@ -28,6 +28,9 @@ Note: The URI in the following examples is for representational purposes only. T
   + Parameters: employer and title (refer DESC above; doesn't have to be an exact value; api supports partial match) 
   + Returns: JSONified dataset of salary, location, title and time for the documents (records) that match the input parameters
   + curl -X GET "http://192.168.1.25:5000/salaries?employer=microsoft&title=director"
+
+## High level service architecture
+The service is completely docker-ized. It utilized two containers for the REST api (frontend) and the database (backend). The RESTful apis are powered by a container running Flask. Flask is connects to mongodb backend running in another container. Mongodb gets seeded with the salary data upon the container start. More details on the data aggregation and mongodb data seeding can be found in the [doc here](https://github.com/gauravsgr/salary-service/blob/master/db/database_setup.md). 
 
 ## Request for Features
 Open issues if you want to request features or fork and add in features. 
