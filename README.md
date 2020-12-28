@@ -32,10 +32,31 @@ Note: The URI in the following examples is for representational purposes only. T
 ## High level service architecture
 The service is completely docker-ized. It utilized two containers for the REST api (frontend) and the database (backend). The RESTful apis are powered by a container running Flask. Flask is connects to mongodb backend running in another container. Mongodb gets seeded with the salary data upon the container start. More details on the data aggregation and mongodb data seeding can be found in the **[doc here](https://github.com/gauravsgr/salary-service/blob/master/db/database_setup.md)**. There is also a docker container running a juypter. This container has an **[embedded notebook](https://github.com/gauravsgr/salary-service/blob/master/jptr/Salary_Service_API_Calls.ipynb)** that has sample API requests made in python and transfored to pandas dataframe.
 
-## General debugging
-If you want to look into a particular container and see any warning or error messages. Docker logs is the best resource. 
+## Debugging
+- If you want to look into a particular container and see any warning or error messages. Docker logs is the best resource. 
 ```sh
 docker logs salary-service_db_1
+```
+- If you want to connect with the mongodb container directly with your language of choice, you would need the container IP address. You can get it with the following code.
+```sh
+docker inspect mongodb | grep IPAddress
+```
+
+- Some general mongodb commands you can run from mongo shell (after you get into the bash of the docker container running mongodb)
+```sh
+# Show all databases in the mongodb
+show dbs
+
+# Use the 'test' database
+use test
+
+# Get count of the documents in a collection (visa collection here)
+db.visa.count()
+```
+
+- To copy files from the docker container to the host (files can be copied from host to a live container in a similar way)
+```sh
+docker cp <containerID>:/app/dump/ .
 ```
 
 ## Future State
