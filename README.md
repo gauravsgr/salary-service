@@ -30,7 +30,7 @@ Note: The URI in the following examples is for representational purposes only. T
   + curl -X GET "http://192.168.1.25:5000/salaries?employer=microsoft&title=director"
 
 ## High level service architecture
-The service is completely docker-ized. It utilized two containers for the REST api (frontend) and the database (backend). The RESTful apis are powered by a container running Flask. Flask is connects to mongodb backend running in another container. Mongodb gets seeded with the salary data upon the container start. More details on the data aggregation and mongodb data seeding can be found in the [doc here](https://github.com/gauravsgr/salary-service/blob/master/db/database_setup.md). 
+The service is completely docker-ized. It utilized two containers for the REST api (frontend) and the database (backend). The RESTful apis are powered by a container running Flask. Flask is connects to mongodb backend running in another container. Mongodb gets seeded with the salary data upon the container start. More details on the data aggregation and mongodb data seeding can be found in the **[doc here](https://github.com/gauravsgr/salary-service/blob/master/db/database_setup.md)**. 
 
 ## Request for Features
 Open issues if you want to request features or fork and add in features. 
