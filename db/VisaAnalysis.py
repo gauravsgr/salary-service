@@ -95,3 +95,27 @@ df3.head()
 # Aggegating to create a final file
 df = pd.concat([df1, df2, df3, df2019]) # Pass in a list
 df.to_csv('AggFile_2014_2020Q3.txt', sep='\t', index=False)
+
+
+
+# Cleaning up the dataset of special characters and other string manipulation
+import pandas as pd
+df = pd.read_csv('/home/jovyan/AggFile_2014_2020Q3.txt', sep='\t', encoding='latin-1')
+df.head()
+
+# Cleaning the base salary of '$' and ',' to make it a consistent column
+df['BASE'] = df['BASE'].str.replace('$', '')
+df['BASE'] = df['BASE'].str.replace(',', '')
+
+# Cleaning the employer name and job title of special characters
+df['EMPLOYER_NAME'] = df['EMPLOYER_NAME'].str.replace('[\t\n\r\f]+', '')
+df['JOB_TITLE'] = df['JOB_TITLE'].str.replace('[\t\n\r\f]+', '')
+
+# Making the fields upper case
+df['JOB_TITLE'] = df['JOB_TITLE'].str.upper() 
+df['EMPLOYER_NAME'] = df['EMPLOYER_NAME'].str.upper() 
+df['STATUS'] = df['STATUS'].str.upper()
+
+# Dropping the rows with NaNs
+df = df.dropna()
+df.to_csv('AggFile_2014_2020Q3_clean.txt', sep='\t', index=False)
